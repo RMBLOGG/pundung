@@ -467,3 +467,80 @@ document.addEventListener('keydown', (e) => {
   }
   if (typed.length > 20) typed = typed.slice(-20);
 });
+
+// ── Music Player ──────────────────────────────────────────────
+(function () {
+  const audio   = document.getElementById('bgMusic');
+  const btn     = document.getElementById('musicBtn');
+  const icon    = document.getElementById('musicIcon');
+  const volSldr = document.getElementById('musicVol');
+  const volVal  = document.getElementById('volVal');
+  const volIcon = document.getElementById('volIcon');
+  const vinyl   = document.getElementById('musicVinyl');
+  if (!audio || !btn) return;
+
+  let playing = false;
+  let targetVol = 0.45;
+
+  function setPlaying(state) {
+    playing = state;
+    btn.classList.toggle('playing', state);
+    icon.textContent = state ? '❚❚' : '▶';
+    if (vinyl) vinyl.classList.toggle('spinning', state);
+  }
+
+  btn.addEventListener('click', () => {
+    if (playing) {
+      audio.pause();
+      setPlaying(false);
+    } else {
+      audio.volume = 0;
+      audio.play().then(() => {
+        setPlaying(true);
+        // Fade in
+        let v = 0;
+        const fade = setInterval(() => {
+          v = Math.min(v + 0.04, targetVol);
+          audio.volume = v;
+          if (v >= targetVol) clearInterval(fade);
+        }, 60);
+      }).catch(() => setPlaying(false));
+    }
+  });
+
+  // Volume slider
+  if (volSldr) {
+    volSldr.addEventListener('input', () => {
+      const val = parseInt(volSldr.value);
+      targetVol = val / 100;
+      audio.volume = targetVol;
+      volVal.textContent = val + '%';
+      // Update icon
+      if (volIcon) {
+        volIcon.textContent = val === 0 ? '🔇' : val < 40 ? '🔈' : val < 75 ? '🔉' : '🔊';
+      }
+    });
+
+    // Klik vol icon → mute/unmute
+    if (volIcon) {
+      volIcon.addEventListener('click', () => {
+        if (audio.volume > 0) {
+          targetVol = audio.volume;
+          audio.volume = 0;
+          volSldr.value = 0;
+          volVal.textContent = '0%';
+          volIcon.textContent = '🔇';
+        } else {
+          const restore = targetVol || 0.45;
+          audio.volume = restore;
+          volSldr.value = Math.round(restore * 100);
+          volVal.textContent = Math.round(restore * 100) + '%';
+          volIcon.textContent = restore < 0.4 ? '🔈' : restore < 0.75 ? '🔉' : '🔊';
+        }
+      });
+    }
+  }
+
+  audio.addEventListener('pause', () => setPlaying(false));
+  audio.addEventListener('ended', () => setPlaying(false));
+})();
