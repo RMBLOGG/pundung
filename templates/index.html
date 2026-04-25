@@ -1,1 +1,307 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="sakura">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Untuk Kamu Sayang 💖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Playfair+Display:ital@0;1&family=DM+Sans:wght@300;400&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
 
+  <div class="particles" id="particles"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast"></div>
+
+  <!-- NGAKAK OVERLAY -->
+  <div class="ngakak-overlay" id="ngakakOverlay"></div>
+
+  <!-- WALKING CHARACTER -->
+  <div class="walker-wrap" id="walkerWrap">
+    <div class="walker-bubble" id="walkerBubble"></div>
+    <div class="walker-char" id="walkerChar">
+      <div class="wc-body">
+        <div class="wc-head">
+          <div class="wc-face">
+            <div class="wc-eyes"><span class="wc-eye"></span><span class="wc-eye"></span></div>
+            <div class="wc-mouth" id="wcMouth"></div>
+            <div class="wc-blush"><span></span><span></span></div>
+            <div class="wc-hair"></div>
+          </div>
+        </div>
+        <div class="wc-torso">
+          <div class="wc-arm wc-arm-l" id="wcArmL"></div>
+          <div class="wc-arm wc-arm-r" id="wcArmR"></div>
+          <div class="wc-dress"></div>
+        </div>
+        <div class="wc-legs">
+          <div class="wc-leg wc-leg-l" id="wcLegL"></div>
+          <div class="wc-leg wc-leg-r" id="wcLegR"></div>
+        </div>
+      </div>
+    </div>
+    <div class="walker-label" id="walkerLabel">sayang 🌸</div>
+  </div>
+
+  <!-- THEME SWITCHER -->
+  <div class="theme-switcher">
+    <button class="theme-toggle-btn" id="themeToggleBtn" title="Ganti Tema">🎨</button>
+    <div class="theme-panel" id="themePanel">
+      <p class="theme-panel-title">Pilih Tema</p>
+      <div class="theme-options">
+        <button class="theme-opt" data-theme="sakura">
+          <span class="theme-dot" style="background:linear-gradient(135deg,#f9c6d0,#e8548a)"></span>
+          <span>Sakura</span>
+        </button>
+        <button class="theme-opt" data-theme="dark">
+          <span class="theme-dot" style="background:linear-gradient(135deg,#1a1520,#c4607a)"></span>
+          <span>Dark Rose</span>
+        </button>
+        <button class="theme-opt" data-theme="spring">
+          <span class="theme-dot" style="background:linear-gradient(135deg,#fff0f5,#ff6b9d)"></span>
+          <span>Spring</span>
+        </button>
+        <button class="theme-opt" data-theme="gold">
+          <span class="theme-dot" style="background:linear-gradient(135deg,#2c1810,#d4a853)"></span>
+          <span>Golden</span>
+        </button>
+        <div style="border-top:1px solid var(--border);margin:0.4rem 0;"></div>
+        <button class="theme-opt" id="themeNightAuto" style="font-size:0.72rem;">
+          <span class="theme-dot" style="background:linear-gradient(135deg,#020408,#a78bfa)"></span>
+          <span>🌙 Auto Malam</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="noise-overlay"></div>
+    <div class="title-wrap" id="titleWrap">
+      <p class="eyebrow">— untukmu —</p>
+      <div class="jedag-wrap" id="jedagText">
+        <span class="jd-word" data-i="0">kamu</span>
+        <span class="jd-word" data-i="1">yang</span>
+        <span class="jd-word" data-i="2">suka</span>
+        <span class="jd-word accent" data-i="3">pundung</span>
+        <br>
+        <span class="jd-word italic" data-i="4">sayangg</span>
+        <span class="jd-emoji" data-i="5">😝</span>
+        <span class="jd-emoji" data-i="6">♥️</span>
+        <span class="jd-emoji" data-i="7">♥️</span>
+        <span class="jd-emoji" data-i="8">♥️</span>
+      </div>
+      <div class="heart-divider">
+        <span class="h-line"></span>
+        <svg viewBox="0 0 24 24" class="heart-icon" fill="none">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/>
+        </svg>
+        <span class="h-line"></span>
+      </div>
+      <p class="hero-tagline">aku cinta kamu, sampai akhir 💖</p>
+    </div>
+    <div class="scroll-hint">scroll ↓</div>
+  </section>
+
+  <!-- FOTO -->
+  <section class="photo-section">
+    <div class="noise-overlay"></div>
+    <div class="photo-container">
+      <div class="photo-frame-outer" id="photoFrameOuter">
+        <div class="funny-hat" id="funnyHat">🎩</div>
+        <div class="funny-glasses" id="funnyGlasses">🕶️</div>
+        <div class="photo-stamp" id="photoStamp">PUNDUNG MODE: ON 😤</div>
+        <div class="photo-glitch-wrap" id="glitchWrap">
+          <div class="glitch-layer layer-r"></div>
+          <div class="glitch-layer layer-b"></div>
+          <img src="{{ url_for('static', filename='img_fixed.png') }}" alt="Sayang" class="photo-main" id="photoMain">
+        </div>
+        <div class="fc tl"></div>
+        <div class="fc tr"></div>
+        <div class="fc bl"></div>
+        <div class="fc br"></div>
+        <div class="scanline"></div>
+      </div>
+      <div class="funny-btns">
+        <button class="fbtn" id="btnWobble">🫨 Goyang</button>
+        <button class="fbtn" id="btnSpin">🌀 Muter</button>
+        <button class="fbtn" id="btnTiny">🔬 Mengecil</button>
+        <button class="fbtn" id="btnFlip">🙃 Balik</button>
+        <button class="fbtn" id="btnRainbow">🌈 Rainbow</button>
+        <button class="fbtn" id="btnCry">😭 Nangis</button>
+      </div>
+      <div class="photo-caption">
+        <p class="cap-label">📸 dia.</p>
+        <p class="cap-name" id="jedagCaption">kamu yang suka pundung sayangg 😝♥️</p>
+        <p class="cap-sub">— tapi tetep aku sayang —</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MESSAGE -->
+  <section class="message-section">
+    <div class="container">
+      <div class="card-message">
+        <div class="card-deco top-left"></div>
+        <div class="card-deco bottom-right"></div>
+        <p class="label-kecil">pesan hari ini</p>
+        <blockquote class="daily-msg" id="dailyMsg">Kamu adalah alasan aku tersenyum setiap pagi ☀️</blockquote>
+        <button class="btn-refresh" id="btnRefresh">
+          <span>pesan baru</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- REASONS -->
+  <section class="reasons-section">
+    <div class="container">
+      <h2 class="section-title">kenapa aku <em>mencintaimu</em></h2>
+      <div class="reasons-grid">
+        <div class="reason-card" data-delay="0"><div class="reason-num">01</div><div class="reason-icon">🌙</div><p>Senyummu yang selalu bisa menenangkan hari-hariku yang paling berat sekalipun.</p></div>
+        <div class="reason-card" data-delay="100"><div class="reason-num">02</div><div class="reason-icon">🌸</div><p>Caramu tertawa, polos dan tulus, adalah hal yang paling aku rindukan.</p></div>
+        <div class="reason-card" data-delay="200"><div class="reason-num">03</div><div class="reason-icon">✨</div><p>Kamu selalu hadir di saat yang tepat, seperti bintang yang tidak pernah padam.</p></div>
+        <div class="reason-card" data-delay="300"><div class="reason-num">04</div><div class="reason-icon">🫂</div><p>Bersamamu, aku tidak perlu berpura-pura menjadi siapapun selain diriku sendiri.</p></div>
+        <div class="reason-card" data-delay="400"><div class="reason-num">05</div><div class="reason-icon">💌</div><p>Setiap kata yang kamu ucapkan selalu membekas jauh di dalam hatiku.</p></div>
+        <div class="reason-card" data-delay="500"><div class="reason-num">06</div><div class="reason-icon">🌍</div><p>Kamu adalah tempat di mana aku selalu ingin pulang, selamanya.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MINIGAMES SECTION -->
+  <section class="minigames-section">
+    <div class="container">
+      <h2 class="section-title mg-title">mini games <em>buat kamu</em> 🎮</h2>
+      <p class="mg-subtitle">bosen? mainin dulu ini sayang 😝</p>
+      <div class="mg-cards">
+
+        <!-- GAME 1: Tampar Pundung -->
+        <div class="mg-card" id="mgCard1">
+          <div class="mg-card-icon">😤</div>
+          <h3>Tampar Pundung!</h3>
+          <p>Tap muka pundungnya secepat mungkin sebelum kabur!</p>
+          <button class="mg-btn" id="btnGame1">Main Sekarang 👋</button>
+          <div class="mg-score-wrap" id="mg1Score" style="display:none">
+            Skor: <span id="mg1ScoreNum">0</span> | Waktu: <span id="mg1Timer">10</span>s
+          </div>
+        </div>
+
+        <!-- GAME 2: Tebak Perasaan -->
+        <div class="mg-card" id="mgCard2">
+          <div class="mg-card-icon">🤔</div>
+          <h3>Tebak Perasaanku!</h3>
+          <p>Tebak apa yang aku rasain ke kamu. Pilih yang bener!</p>
+          <button class="mg-btn" id="btnGame2">Tebak Sekarang 💭</button>
+        </div>
+
+        <!-- GAME 3: Catch Hearts -->
+        <div class="mg-card" id="mgCard3">
+          <div class="mg-card-icon">💖</div>
+          <h3>Tangkap Hatiku!</h3>
+          <p>Tangkap hati yang jatuh, hindari yang patah!</p>
+          <button class="mg-btn" id="btnGame3">Mulai Tangkap 🫳</button>
+          <div class="mg-score-wrap" id="mg3Score" style="display:none">
+            ❤️ <span id="mg3ScoreNum">0</span> | 💔 <span id="mg3Miss">0</span>/3
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section class="final-section">
+    <div class="final-wrap">
+      <div class="big-heart" id="bigHeart">💖</div>
+      <h2 class="final-text">aku cinta kamu,<br><em>selamanya.</em></h2>
+      <p class="final-sub">— selalu dan untuk selamanya —</p>
+    </div>
+  </section>
+
+  <!-- GAME 1 MODAL: Tampar Pundung -->
+  <div class="game-modal" id="gameModal1">
+    <div class="gm-inner">
+      <button class="gm-close" id="gmClose1">✕</button>
+      <h3 class="gm-title">Tampar Pundung! 😤</h3>
+      <div class="gm-hud">
+        <span>Skor: <b id="g1Score">0</b></span>
+        <span>Waktu: <b id="g1Time">10</b>s</span>
+        <span>Combo: <b id="g1Combo">x1</b></span>
+      </div>
+      <div class="gm-arena" id="g1Arena">
+        <div class="g1-start-msg" id="g1StartMsg">
+          <p>Tap muka pundungnya!</p>
+          <button class="mg-btn" id="g1StartBtn">MULAI! 👋</button>
+        </div>
+        <div class="g1-result" id="g1Result" style="display:none">
+          <p id="g1ResultText"></p>
+          <button class="mg-btn" id="g1RestartBtn">Main Lagi 🔄</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAME 2 MODAL: Tebak Perasaan -->
+  <div class="game-modal" id="gameModal2">
+    <div class="gm-inner">
+      <button class="gm-close" id="gmClose2">✕</button>
+      <h3 class="gm-title">Tebak Perasaanku! 💭</h3>
+      <div class="gm-hud">
+        <span>Soal: <b id="g2Num">1</b>/5</span>
+        <span>Bener: <b id="g2Right">0</b></span>
+      </div>
+      <div class="g2-content" id="g2Content">
+        <div class="g2-emoji" id="g2Emoji">🤔</div>
+        <p class="g2-question" id="g2Question">Loading...</p>
+        <div class="g2-options" id="g2Options"></div>
+        <div class="g2-feedback" id="g2Feedback"></div>
+      </div>
+      <div class="g2-result" id="g2Result" style="display:none">
+        <div class="g2-result-emoji" id="g2ResultEmoji">🎉</div>
+        <p id="g2ResultText"></p>
+        <button class="mg-btn" id="g2RestartBtn">Main Lagi 🔄</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAME 3 MODAL: Catch Hearts -->
+  <div class="game-modal" id="gameModal3">
+    <div class="gm-inner g3-inner">
+      <button class="gm-close" id="gmClose3">✕</button>
+      <h3 class="gm-title">Tangkap Hatiku! 💖</h3>
+      <div class="gm-hud">
+        <span>❤️ <b id="g3Score">0</b></span>
+        <span>💔 <b id="g3Miss">0</b>/3</span>
+        <span>Nyawa: <b id="g3Lives">❤️❤️❤️</b></span>
+      </div>
+      <div class="g3-arena" id="g3Arena">
+        <div class="g3-basket" id="g3Basket">🫳</div>
+        <div class="g3-start-msg" id="g3StartMsg">
+          <p>Geser untuk tangkap ❤️<br>Hindari 💔!</p>
+          <button class="mg-btn" id="g3StartBtn">MULAI! 💖</button>
+        </div>
+        <div class="g3-result" id="g3Result" style="display:none">
+          <p id="g3ResultText"></p>
+          <button class="mg-btn" id="g3RestartBtn">Main Lagi 🔄</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KONAMI / EASTER EGG OVERLAY -->
+  <div class="easter-overlay" id="easterOverlay">
+    <div class="easter-inner" id="easterInner"></div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/nightmode.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/games.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/walker.js') }}"></script>
+</body>
+</html>
