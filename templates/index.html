@@ -46,6 +46,11 @@
     <div class="walker-label" id="walkerLabel">sayang 🌸</div>
   </div>
 
+  <!-- AUDIO -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="{{ url_for('static', filename='snowfall.mp3') }}" type="audio/mpeg">
+  </audio>
+
   <!-- THEME SWITCHER -->
   <div class="theme-switcher">
     <button class="theme-toggle-btn" id="themeToggleBtn" title="Ganti Tema">🎨</button>
@@ -81,7 +86,7 @@
   <section class="hero">
     <div class="noise-overlay"></div>
     <div class="title-wrap" id="titleWrap">
-      <p class="eyebrow">— untukmu —</p>
+      <p class="eyebrow">— dari dayy untuk aeni —</p>
       <div class="jedag-wrap" id="jedagText">
         <span class="jd-word" data-i="0">kamu</span>
         <span class="jd-word" data-i="1">yang</span>
@@ -105,6 +110,28 @@
     </div>
     <div class="scroll-hint">scroll ↓</div>
   </section>
+
+  <!-- MUSIC BAR -->
+  <div class="music-bar">
+    <button class="music-play-btn" id="musicBtn" title="Play / Pause">
+      <span class="music-icon" id="musicIcon">▶</span>
+      <span class="music-bars" id="musicBars">
+        <span></span><span></span><span></span><span></span>
+      </span>
+    </button>
+    <div class="music-vinyl" id="musicVinyl">
+      <div class="vinyl-inner">🎵</div>
+    </div>
+    <div class="music-bar-info">
+      <span class="music-song-title">snowfall</span>
+      <span class="music-song-artist">øneheart × reidenshi</span>
+    </div>
+    <div class="music-vol-wrap">
+      <span class="vol-icon" id="volIcon">🔈</span>
+      <input type="range" class="music-vol" id="musicVol" min="0" max="100" value="45">
+      <span class="vol-val" id="volVal">45%</span>
+    </div>
+  </div>
 
   <!-- FOTO -->
   <section class="photo-section">
@@ -214,6 +241,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- FINAL -->
   <section class="final-section">
